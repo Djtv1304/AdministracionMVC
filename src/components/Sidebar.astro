@@ -1,0 +1,31 @@
+---
+import { Icon } from 'astro-icon/components';
+
+const navigation = [
+  { name: 'Dashboard', href: '/dashboard', icon: 'lucide:layout-dashboard' },
+  { name: 'My Vehicles', href: '/vehicles', icon: 'lucide:car' },
+  { name: 'Battery Calculator', href: '/battery', icon: 'lucide:battery-charging' },
+  { name: 'Compare EVs', href: '/compare', icon: 'lucide:git-compare' },
+  { name: 'Get Recommendations', href: '/recommendations', icon: 'lucide:lightbulb' },
+];
+---
+
+<aside class="w-64 bg-white shadow-sm h-screen">
+  <nav class="px-4 py-6">
+    <ul class="space-y-2">
+      {
+        navigation.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="flex items-center gap-3 px-4 py-2 text-gray-700 rounded-md hover:bg-cyan-100 hover:text-primary-600 transition-colors"
+            >
+              <Icon name={item.icon} class="w-5 h-5" />
+              <span>{item.name}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</aside>
