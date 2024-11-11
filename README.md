@@ -1,3 +1,11 @@
+# Link del video
+
+https://www.loom.com/share/d1d08ea541ff4955953235cdc7ebee47?sid=16994a69-4dd7-4568-be94-cfce035f2d8e
+
+# Link del proyecto deployado
+
+https://core-mvc.vercel.app/
+
 # Astro Starter Kit: Basics
 
 ```sh
