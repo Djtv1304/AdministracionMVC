@@ -73,4 +73,56 @@ export const server = {
       }
     }
   }),
+  loginUser: defineAction({
+    accept: "form",
+    input: z.object({
+      email: z.string().email(),
+      password: z.string().min(8, { 
+        message: "Password must be at least 8 characters long" 
+      }),
+    }),
+    handler: async (loginData) => {
+      try {
+        // Convertir el objeto loginData al formato esperado por el backend
+        const loginPayload = {
+          email: loginData.email,
+          contrasenia: loginData.password,
+        };
+
+        // Realizar la petición POST a Spring Boot
+        const response = await fetch('http://localhost:8080/usuario/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(loginPayload),
+        });
+
+        // Si la petición no fue exitosa, se retorna un objeto con el error
+        if (!response.ok) {
+          return { success: false, error: { fields: { general: 'Incorrect email or password' } } };
+        }
+
+        // Leer la respuesta como texto y convertirla a booleano
+        const text = await response.text();
+        const data = text === 'true';
+
+        // Si el login fue exitoso, redirigir al usuario
+        if (data) {
+          return { success: true };
+        } else {
+          return { success: false, error: { fields: { general: 'Incorrect email or password' } } };
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          console.error(error);
+          // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario
+          return { success: false, error: { fields: { general: error.message } } };
+        } else {
+          console.error("Unknown error", error);
+          return { success: false, error: { fields: { general: "Unknown error" } } };
+        }
+      }
+    }
+  }),
 };
