@@ -42,7 +42,7 @@ export const server = {
         };
 
         // Realizar la petición POST a Spring Boot
-        const response = await fetch('http://localhost:8080/usuario/registrar', {
+        const response = await fetch('https://cae3-157-100-138-126.ngrok-free.app/usuario/registrar', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ export const server = {
         };
 
         // Realizar la petición POST a Spring Boot
-        const response = await fetch('http://localhost:8080/usuario/login', {
+        const response = await fetch('https://cae3-157-100-138-126.ngrok-free.app/usuario/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
