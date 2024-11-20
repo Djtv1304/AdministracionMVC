@@ -1,0 +1,13 @@
+---
+import ProtectedLayout from '../../layouts/ProtectedLayout.astro';
+import BatteryCalculator from '../../components/BatteryCalculator';
+---
+
+<ProtectedLayout title="Battery Calculator - EV Manager">
+  <div class="max-w-4xl mx-auto py-8">
+    <div class="bg-white shadow-sm rounded-lg p-6">
+      <h1 class="text-2xl font-semibold text-gray-900 mb-6">Battery Performance Calculator</h1>
+      <BatteryCalculator client:load />
+    </div>
+  </div>
+</ProtectedLayout>

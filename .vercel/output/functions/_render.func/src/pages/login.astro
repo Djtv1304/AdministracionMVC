@@ -1,0 +1,10 @@
+---
+import PublicLayout from '../layouts/PublicLayout.astro';
+import LoginForm from '../components/Forms/LoginForm.tsx';
+---
+
+<PublicLayout title="Login - EV Manager">
+  <div class="min-h-[80vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <LoginForm client:load/>
+  </div>
+</PublicLayout>
