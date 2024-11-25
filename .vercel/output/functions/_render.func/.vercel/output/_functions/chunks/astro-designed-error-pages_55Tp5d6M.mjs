@@ -1,5 +1,5 @@
 import { escape } from 'html-escaper';
-import { D as DEFAULT_404_COMPONENT } from './astro/server_CdaQEI4y.mjs';
+import { D as DEFAULT_404_COMPONENT } from './astro/server_DDnACvc8.mjs';
 
 function template({
   title,

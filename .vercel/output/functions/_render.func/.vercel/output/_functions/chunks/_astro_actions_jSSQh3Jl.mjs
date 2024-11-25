@@ -1,4 +1,4 @@
-import { g as getActionQueryString, A as ACTION_QUERY_PARAMS } from './shared_B6Fhq9l9.mjs';
+import { g as getActionQueryString, A as ACTION_QUERY_PARAMS } from './shared_C5l7COKz.mjs';
 
 const ENCODED_DOT = "%2E";
 function toActionProxy(actionCallback = {}, aggregatedPath = "") {
@@ -42,7 +42,7 @@ function toActionProxy(actionCallback = {}, aggregatedPath = "") {
 }
 async function handleAction(param, path, context) {
   {
-    const { getAction } = await import('./get-action_B9_3Xjnr.mjs');
+    const { getAction } = await import('./get-action_DbHH0JjD.mjs');
     const action = await getAction(path);
     if (!action) throw new Error(`Action not found: ${path}`);
     return action.bind(context)(param);

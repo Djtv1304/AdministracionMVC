@@ -1,134 +1,15 @@
 ---
 import ProtectedLayout from '../../layouts/ProtectedLayout.astro';
-import { Icon } from 'astro-icon/components';
+import RegisterVehicleForm from '../../components/Forms/Vehicles/RegisterVehicleForm.tsx';
 ---
 
 <ProtectedLayout title="Register Vehicle - EV Manager">
   <div class="max-w-2xl mx-auto py-8">
-    <div class="bg-white shadow-sm rounded-lg p-6">
+    <div class="bg-white shadow-lg rounded-lg p-6">
       <h1 class="text-2xl font-semibold text-gray-900 mb-6">Register New Vehicle</h1>
       
-      <form class="space-y-6">
-        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
-          <div>
-            <label for="make" class="block text-sm font-medium text-gray-700">Make</label>
-            <select
-              id="make"
-              name="make"
-              class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-primary-500 focus:border-primary-500 sm:text-sm rounded-md"
-            >
-              <option>Tesla</option>
-              <option>Chevrolet</option>
-              <option>Ford</option>
-              <option>Nissan</option>
-              <option>BMW</option>
-            </select>
-          </div>
+      <RegisterVehicleForm client:load />
 
-          <div>
-            <label for="model" class="block text-sm font-medium text-gray-700">Model</label>
-            <input
-              type="text"
-              name="model"
-              id="model"
-              class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-            />
-          </div>
-
-          <div>
-            <label for="year" class="block text-sm font-medium text-gray-700">Year</label>
-            <input
-              type="number"
-              name="year"
-              id="year"
-              min="2000"
-              max="2024"
-              class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-            />
-          </div>
-
-          <div>
-            <label for="battery-capacity" class="block text-sm font-medium text-gray-700">
-              Battery Capacity (kWh)
-            </label>
-            <input
-              type="number"
-              name="battery-capacity"
-              id="battery-capacity"
-              class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label for="mileage" class="block text-sm font-medium text-gray-700">
-            Current Mileage (km)
-          </label>
-          <input
-            type="number"
-            name="mileage"
-            id="mileage"
-            class="mt-1 focus:ring-primary-500 focus:border-primary-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
-          />
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Vehicle Condition</label>
-          <div class="mt-2 space-y-2">
-            <div class="flex items-center">
-              <input
-                id="condition-new"
-                name="condition"
-                type="radio"
-                class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300"
-              />
-              <label for="condition-new" class="ml-3 block text-sm font-medium text-gray-700">
-                New
-              </label>
-            </div>
-            <div class="flex items-center">
-              <input
-                id="condition-used"
-                name="condition"
-                type="radio"
-                class="focus:ring-primary-500 h-4 w-4 text-primary-600 border-gray-300"
-              />
-              <label for="condition-used" class="ml-3 block text-sm font-medium text-gray-700">
-                Used
-              </label>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Vehicle Images</label>
-          <div class="mt-2 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-            <div class="space-y-1 text-center">
-              <Icon name="lucide:upload" class="mx-auto h-12 w-12 text-gray-400" />
-              <div class="flex text-sm text-gray-600">
-                <label
-                  for="vehicle-images"
-                  class="relative cursor-pointer bg-white rounded-md font-medium text-primary-600 hover:text-primary-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500"
-                >
-                  <span>Upload files</span>
-                  <input id="vehicle-images" name="vehicle-images" type="file" class="sr-only" multiple />
-                </label>
-                <p class="pl-1">or drag and drop</p>
-              </div>
-              <p class="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex justify-end">
-          <button
-            type="submit"
-            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-cyan-600 hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
-          >
-            Register Vehicle
-          </button>
-        </div>
-      </form>
     </div>
   </div>
 </ProtectedLayout>

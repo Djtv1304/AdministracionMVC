@@ -1,10 +1,9 @@
 import 'es-module-lexer';
-import { a as ACTION_QUERY_PARAMS, s as serializeActionResult } from './chunks/shared_B6Fhq9l9.mjs';
-import 'cookie';
-import { d as defineMiddleware, g as getOriginPathname, s as sequence } from './chunks/index_DAAMFQxt.mjs';
+import { a as ACTION_QUERY_PARAMS, s as serializeActionResult } from './chunks/shared_C5l7COKz.mjs';
+import { d as defineMiddleware, g as getOriginPathname, s as sequence } from './chunks/index_D5CWS5Eq.mjs';
 import { yellow } from 'kleur/colors';
 import { h as hasContentType, A as ACTION_API_CONTEXT_SYMBOL, f as formContentTypes } from './chunks/utils_Cwo9_uli.mjs';
-import { getAction } from './chunks/get-action_B9_3Xjnr.mjs';
+import { getAction } from './chunks/get-action_DbHH0JjD.mjs';
 
 const onRequest$1 = defineMiddleware(async (context, next) => {
   if (context._isPrerendered) {
