@@ -81,7 +81,6 @@ export const newVehicle = defineAction({
 
       // Si la petición no fue exitosa, se retorna un objeto con el error
       if (!response.ok) {
-        console.log("ERROR: ", response);
         return {
           success: false,
           error: { fields: { general: "Error registering the vehicle" } },
@@ -102,6 +101,10 @@ export const newVehicle = defineAction({
         };
       } else {
         console.error("Unknown error", error);
+        return {
+          success: false,
+          error: { fields: { general: "Unknown error" } },
+        };
       }
     }
   },

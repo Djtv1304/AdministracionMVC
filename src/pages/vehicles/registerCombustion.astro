@@ -1,0 +1,15 @@
+---
+import ProtectedLayout from '../../layouts/ProtectedLayout.astro';
+import RegisterCombustionVehicleForm from '../../components/Forms/Vehicles/RegisterCombustionVehicleForm.tsx';
+---
+
+<ProtectedLayout title="Register Combustion Vehicle - EV Manager">
+  <div class="max-w-2xl mx-auto py-8">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+      <h1 class="text-2xl font-semibold text-gray-900 mb-6">Register New Combustion Vehicle</h1>
+      
+      <RegisterCombustionVehicleForm client:load />
+
+    </div>
+  </div>
+</ProtectedLayout>

@@ -46,8 +46,6 @@ const RegisterVehicleForm: React.FC = () => {
       data?: { data: string };
     };
 
-    console.log(result);
-
     if (result.error) {
       console.error(result.error);
 
@@ -80,8 +78,10 @@ const RegisterVehicleForm: React.FC = () => {
 
     setSuccessMessage(result.data?.data ?? null);
 
-    // Redirigir al usuario a la página de dashboard
-    window.location.href = "/vehicles";
+    // Redirigir al usuario a la página de dashboard después de 3 segundos
+    setTimeout(() => {
+      window.location.href = "/vehicles";
+    }, 3000);
   };
 
   return (
@@ -141,7 +141,7 @@ const RegisterVehicleForm: React.FC = () => {
             htmlFor="year"
             className="block text-sm font-medium text-gray-700"
           >
-            Year
+            Model Year
           </label>
           <input
             type="number"
