@@ -8,16 +8,17 @@ interface MenuOption {
 }
 
 interface DropDownButtonProps {
+  titleDropDown: string;
   menuOptions: MenuOption[];
 }
 
-const DropDownButton: React.FC<DropDownButtonProps> = ({ menuOptions }) => {
+const DropDownButton: React.FC<DropDownButtonProps> = ({ titleDropDown, menuOptions }) => {
 
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md border-gray-300 shadow-sm px-4 py-2 bg-cyan-600 text-sm font-medium text-white hover:bg-cyan-700 focus:outline-none ring-1 ring-inset ring-gray-300">
-          Options
+          {titleDropDown}
           <RiArrowDropDownLine aria-hidden='true' className='-mr-1 size-5 text-white' />
         </MenuButton>
       </div>

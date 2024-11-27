@@ -43,7 +43,7 @@ export const loginUser = defineAction({
       const token = await response.text();
 
       cookies.set("jwtToken", token, {
-        httpOnly: true,
+        httpOnly: false,
         secure: false, // Ajustado para pruebas en ambiente de desarrollo
         maxAge: 60 * 60 * 10, // 10 horas
         path: "/",
