@@ -16,7 +16,7 @@ const BatteryCalculator: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -49,13 +49,12 @@ const BatteryCalculator: React.FC = () => {
       }
 
       const data = await response.text();
-      console.log("New record saved:", data);
 
       fetchPerformanceRecords();
     } catch (error) {
       console.error("Error saving new record:", error);
     }
-  }
+  };
 
   const fetchPerformanceRecords = async () => {
     try {
@@ -76,13 +75,11 @@ const BatteryCalculator: React.FC = () => {
       }
 
       const data = await response.json();
-      console.log("Performance records:", data);
       setPerformanceRecords(data);
     } catch (error) {
       console.error("Error fetching performance records:", error);
     }
   };
-    
 
   useEffect(() => {
     const fetchOptions = async () => {
@@ -284,14 +281,19 @@ const BatteryCalculator: React.FC = () => {
         </table>
       </div>
       <div className="bg-[#16a34a] p-4 rounded-lg text-white">
-        <h3 className="text-lg font-medium mb-2">Promedio de Rendimiento del Vehiculo</h3>
+        <h3 className="text-lg font-medium mb-2">
+          Average Vehicle Performance
+        </h3>
         <p className="text-2xl font-bold">
-            {performanceRecords.length > 0
+          {performanceRecords.length > 0
             ? (
-              performanceRecords.reduce((acc, record) => acc + record.rendimiento, 0) /
-              performanceRecords.length
+                performanceRecords.reduce(
+                  (acc, record) => acc + record.rendimiento,
+                  0
+                ) / performanceRecords.length
               ).toFixed(2)
-            : "0.00 "}km/kWh
+            : "0.00 "}
+          km/kWh
         </p>
       </div>
     </div>
