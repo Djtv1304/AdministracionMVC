@@ -33,17 +33,6 @@ const recommendedVehicles = [
       <form class="space-y-6">
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
           <div>
-            <label for="weekly-mileage" class="block text-sm font-medium text-gray-700">
-              Weekly Mileage (km)
-            </label>
-            <input
-              type="number"
-              id="weekly-mileage"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-            />
-          </div>
-
-          <div>
             <label for="vehicle-type" class="block text-sm font-medium text-gray-700">
               Preferred Vehicle Type
             </label>
@@ -60,50 +49,13 @@ const recommendedVehicles = [
 
           <div>
             <label for="min-budget" class="block text-sm font-medium text-gray-700">
-              Minimum Budget
+              Budget
             </label>
             <input
               type="number"
-              id="min-budget"
+              id="budget"
               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
             />
-          </div>
-
-          <div>
-            <label for="max-budget" class="block text-sm font-medium text-gray-700">
-              Maximum Budget
-            </label>
-            <input
-              type="number"
-              id="max-budget"
-              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary-500 focus:ring-primary-500 sm:text-sm"
-            />
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Charging Availability</label>
-          <div class="mt-2 space-y-2">
-            <div class="flex items-center">
-              <input
-                id="home-charging"
-                type="checkbox"
-                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-              />
-              <label for="home-charging" class="ml-2 text-sm text-gray-700">
-                Home Charging Available
-              </label>
-            </div>
-            <div class="flex items-center">
-              <input
-                id="work-charging"
-                type="checkbox"
-                class="h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
-              />
-              <label for="work-charging" class="ml-2 text-sm text-gray-700">
-                Workplace Charging Available
-              </label>
-            </div>
           </div>
         </div>
 

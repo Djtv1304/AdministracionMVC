@@ -1,4 +1,3 @@
-import mod from "astro/zod";
 import { actions } from "astro:actions";
 import React, { useState, type FormEvent } from "react";
 import ErrorMessageForm from "../../ErrorMessageForm";
