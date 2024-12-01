@@ -1,26 +1,13 @@
-/* empty css                                         */
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_DDnACvc8.mjs';
+/* empty css                                    */
+import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_DRZ047Jk.mjs';
 import 'kleur/colors';
-import { $ as $$ProtectedLayout } from '../../chunks/ProtectedLayout_Brw1XkI_.mjs';
-import { jsx, jsxs } from 'react/jsx-runtime';
-import { a as actions } from '../../chunks/_astro_actions_jSSQh3Jl.mjs';
+import { $ as $$ProtectedLayout } from '../../chunks/ProtectedLayout_C6kmevB6.mjs';
+import { jsxs, jsx } from 'react/jsx-runtime';
+import { a as actions } from '../../chunks/_astro_actions_WSGs7rnP.mjs';
 import { useState } from 'react';
+import { E as ErrorMessageForm } from '../../chunks/ErrorMessageForm_ZrxVsV2Y.mjs';
+import { S as SuccessMessageForm } from '../../chunks/SuccessMessageForm_4aExIZ3R.mjs';
 export { renderers } from '../../renderers.mjs';
-
-const ErrorMessageForm = ({ errorMessage }) => {
-  return /* @__PURE__ */ jsx(
-    "div",
-    {
-      className: "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3",
-      role: "alert",
-      children: /* @__PURE__ */ jsx("span", { className: "block sm:inline", children: errorMessage })
-    }
-  );
-};
-
-const SuccessMessageForm = ({ successMessage }) => {
-  return /* @__PURE__ */ jsx("div", { className: "text-sm p-2 rounded-md bg-green-100 text-green-500", role: "alert", children: /* @__PURE__ */ jsx("div", { className: "space-y-2", children: successMessage }) });
-};
 
 const RegisterVehicleForm = () => {
   const [errors, setErrors] = useState({});
@@ -36,7 +23,8 @@ const RegisterVehicleForm = () => {
     autonomy: 0,
     chargeTime: "",
     maintenanceCost: 0,
-    imageURL: ""
+    imageURL: "",
+    precio: 0
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,12 +35,13 @@ const RegisterVehicleForm = () => {
     setErrors({});
     const formDataObj = new FormData(e.currentTarget);
     const result = await actions.newVehicle(formDataObj);
-    console.log(result);
     if (result.error) {
       console.error(result.error);
       const errorMessages = {};
       if (result.error && "fields" in result.error) {
-        Object.entries(result.error.fields).forEach(([key, value]) => {
+        Object.entries(
+          result.error.fields
+        ).forEach(([key, value]) => {
           errorMessages[key] = value[0];
         });
       }
@@ -70,9 +59,13 @@ const RegisterVehicleForm = () => {
       autonomy: 0,
       chargeTime: "",
       maintenanceCost: 0,
-      imageURL: ""
+      imageURL: "",
+      precio: 0
     });
     setSuccessMessage(result.data?.data ?? null);
+    setTimeout(() => {
+      window.location.href = "/vehicles";
+    }, 3e3);
   };
   return /* @__PURE__ */ jsxs("form", { className: "space-y-6", onSubmit: handleSubmit, children: [
     /* @__PURE__ */ jsxs("div", { className: "grid grid-cols-1 gap-6 sm:grid-cols-2", children: [
@@ -95,9 +88,8 @@ const RegisterVehicleForm = () => {
             onChange: handleChange,
             children: [
               /* @__PURE__ */ jsx("option", { value: `Tesla`, children: "Tesla" }),
-              /* @__PURE__ */ jsx("option", { value: `Chevrolet`, children: "Chevrolet" }),
               /* @__PURE__ */ jsx("option", { value: `Ford`, children: "Ford" }),
-              /* @__PURE__ */ jsx("option", { value: `Nissan`, children: "Nissan" }),
+              /* @__PURE__ */ jsx("option", { value: `Mercedes Benz`, children: "Mercedes Benz" }),
               /* @__PURE__ */ jsx("option", { value: `BMW`, children: "BMW" })
             ]
           }
@@ -124,7 +116,14 @@ const RegisterVehicleForm = () => {
             className: "mt-1 p-2 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
           }
         ),
-        errors.model && /* @__PURE__ */ jsx("div", { className: "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3", role: "alert", children: /* @__PURE__ */ jsx("span", { className: "block sm:inline", children: errors.model }) }),
+        errors.model && /* @__PURE__ */ jsx(
+          "div",
+          {
+            className: "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3",
+            role: "alert",
+            children: /* @__PURE__ */ jsx("span", { className: "block sm:inline", children: errors.model })
+          }
+        ),
         errors.model && /* @__PURE__ */ jsx(ErrorMessageForm, { errorMessage: errors.model })
       ] }),
       /* @__PURE__ */ jsxs("div", { children: [
@@ -133,7 +132,7 @@ const RegisterVehicleForm = () => {
           {
             htmlFor: "year",
             className: "block text-sm font-medium text-gray-700",
-            children: "Year"
+            children: "Model Year"
           }
         ),
         /* @__PURE__ */ jsx(
@@ -143,7 +142,7 @@ const RegisterVehicleForm = () => {
             name: "year",
             id: "year",
             min: "2000",
-            max: "2024",
+            max: "2030",
             value: formData.year,
             onChange: handleChange,
             className: "mt-1 p-2 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
@@ -332,6 +331,28 @@ const RegisterVehicleForm = () => {
         }
       ),
       errors.imageURL && /* @__PURE__ */ jsx(ErrorMessageForm, { errorMessage: errors.imageURL })
+    ] }),
+    /* @__PURE__ */ jsxs("div", { children: [
+      /* @__PURE__ */ jsx(
+        "label",
+        {
+          htmlFor: "precio",
+          className: "block text-sm font-medium text-gray-700",
+          children: "Price ($)"
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type: "number",
+          name: "precio",
+          id: "precio",
+          value: formData.precio,
+          onChange: handleChange,
+          className: "mt-1 p-2 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
+        }
+      ),
+      errors.precio && /* @__PURE__ */ jsx(ErrorMessageForm, { errorMessage: errors.precio })
     ] }),
     errors.general && /* @__PURE__ */ jsx(ErrorMessageForm, { errorMessage: errors.general }),
     successMessage && /* @__PURE__ */ jsx(SuccessMessageForm, { successMessage }),

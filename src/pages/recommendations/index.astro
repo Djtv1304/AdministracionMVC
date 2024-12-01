@@ -1,27 +1,6 @@
 ---
 import ProtectedLayout from '../../layouts/ProtectedLayout.astro';
 import VehicleRecommendation from '../../components/Forms/VehicleRecommendation.tsx';
-
-const recommendedVehicles = [
-  {
-    make: 'Tesla',
-    model: 'Model 3',
-    type: 'Sedan',
-    price: '$40,240',
-    range: '358',
-    image: '/tesla-model-3.jpg',
-    matchScore: 95,
-  },
-  {
-    make: 'Ford',
-    model: 'Mustang Mach-E',
-    type: 'SUV',
-    price: '$45,990',
-    range: '417',
-    image: '/mach-e.jpg',
-    matchScore: 88,
-  },
-];
 ---
 
 <ProtectedLayout title="Get Recommendations - EV Manager">

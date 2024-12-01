@@ -1,4 +1,3 @@
-import ObjectID from "bson-objectid";
 import React, { useEffect, useState } from "react";
 
 const BatteryCalculator: React.FC = () => {
@@ -47,8 +46,6 @@ const BatteryCalculator: React.FC = () => {
         console.error("Error saving new record:", response);
         throw new Error("Error saving new record");
       }
-
-      const data = await response.text();
 
       fetchPerformanceRecords();
     } catch (error) {

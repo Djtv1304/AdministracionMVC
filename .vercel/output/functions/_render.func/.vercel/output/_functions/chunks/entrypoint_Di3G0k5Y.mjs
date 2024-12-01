@@ -1,12 +1,13 @@
 import { Http2ServerResponse } from 'node:http2';
-import { h as ROUTE_TYPE_HEADER, i as decryptString, j as createSlotValueFromString, r as renderTemplate, a as renderComponent, D as DEFAULT_404_COMPONENT, k as clientLocalsSymbol, l as clientAddressSymbol, n as REROUTABLE_STATUS_CODES, o as REROUTE_DIRECTIVE_HEADER, p as responseSentSymbol } from './astro/server_DDnACvc8.mjs';
-import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as findRouteToRewrite, h as RenderContext, i as getSetCookiesFromResponse } from './index_D5CWS5Eq.mjs';
+import { h as ROUTE_TYPE_HEADER, i as REROUTE_DIRECTIVE_HEADER, j as decryptString, k as createSlotValueFromString, r as renderTemplate, a as renderComponent, D as DEFAULT_404_COMPONENT, l as clientLocalsSymbol, n as clientAddressSymbol, o as REROUTABLE_STATUS_CODES, p as responseSentSymbol } from './astro/server_DRZ047Jk.mjs';
+import { r as requestHasLocale, a as requestIs404Or500, n as notFound, b as redirectToFallback, c as normalizeTheLocale, e as redirectToDefaultLocale, d as defineMiddleware, R as RouteCache, s as sequence, f as findRouteToRewrite, m as matchRoute, h as RenderContext, i as getSetCookiesFromResponse } from './index_BZ36x_-C.mjs';
+import 'cookie';
 import { i as fileExtension, j as joinPaths, s as slash, p as prependForwardSlash, r as removeTrailingForwardSlash, k as appendForwardSlash, A as AstroError, L as LocalsNotAnObject } from './astro/assets-service_DMZndIT3.mjs';
 import { bold, red, yellow, dim, blue } from 'kleur/colors';
-import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_Ca-eTyXp.mjs';
-import { e as ensure404Route, d as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_55Tp5d6M.mjs';
+import { N as NOOP_MIDDLEWARE_FN } from './noop-middleware_Bir8i88c.mjs';
+import { e as ensure404Route, d as default404Instance, D as DEFAULT_404_ROUTE } from './astro-designed-error-pages_BiRS2Klu.mjs';
 import 'es-module-lexer';
-import './shared_C5l7COKz.mjs';
+import './shared__YcHOJHU.mjs';
 import 'fast-glob';
 import nodePath from 'node:path';
 import buffer from 'node:buffer';
@@ -53,6 +54,10 @@ function createI18nMiddleware(i18n, base, trailingSlash, format) {
   return async (context, next) => {
     const response = await next();
     const type = response.headers.get(ROUTE_TYPE_HEADER);
+    const isReroute = response.headers.get(REROUTE_DIRECTIVE_HEADER);
+    if (isReroute === "no" && typeof i18n.fallback === "undefined") {
+      return response;
+    }
     if (type !== "page" && type !== "fallback") {
       return response;
     }
@@ -272,7 +277,7 @@ function createDefaultRoutes(manifest) {
 }
 
 class Pipeline {
-  constructor(logger, manifest, mode, renderers, resolve, serverLike, streaming, adapterName = manifest.adapterName, clientDirectives = manifest.clientDirectives, inlinedScripts = manifest.inlinedScripts, compressHTML = manifest.compressHTML, i18n = manifest.i18n, middleware = manifest.middleware, routeCache = new RouteCache(logger, mode), site = manifest.site ? new URL(manifest.site) : void 0, callSetGetEnv = true, defaultRoutes = createDefaultRoutes(manifest)) {
+  constructor(logger, manifest, mode, renderers, resolve, serverLike, streaming, adapterName = manifest.adapterName, clientDirectives = manifest.clientDirectives, inlinedScripts = manifest.inlinedScripts, compressHTML = manifest.compressHTML, i18n = manifest.i18n, middleware = manifest.middleware, routeCache = new RouteCache(logger, mode), site = manifest.site ? new URL(manifest.site) : void 0, defaultRoutes = createDefaultRoutes(manifest)) {
     this.logger = logger;
     this.manifest = manifest;
     this.mode = mode;
@@ -288,7 +293,6 @@ class Pipeline {
     this.middleware = middleware;
     this.routeCache = routeCache;
     this.site = site;
-    this.callSetGetEnv = callSetGetEnv;
     this.defaultRoutes = defaultRoutes;
     this.internalMiddleware = [];
     if (i18n?.strategy !== "manual") {
@@ -296,7 +300,6 @@ class Pipeline {
         createI18nMiddleware(i18n, manifest.base, manifest.trailingSlash, manifest.buildFormat)
       );
     }
-    if (callSetGetEnv && manifest.experimentalEnvGetSecretEnabled) ;
   }
   internalMiddleware;
   resolvedMiddleware = void 0;
@@ -530,13 +533,6 @@ function createModuleScriptElementWithSrc(src, base, assetsPrefix) {
   };
 }
 
-function matchRoute(pathname, manifest) {
-  const decodedPathname = decodeURI(pathname);
-  return manifest.routes.find((route) => {
-    return route.pattern.test(decodedPathname) || route.fallbackRoutes.some((fallbackRoute) => fallbackRoute.pattern.test(decodedPathname));
-  });
-}
-
 class AppPipeline extends Pipeline {
   #manifestData;
   static create(manifestData, {
@@ -565,7 +561,6 @@ class AppPipeline extends Pipeline {
       void 0,
       void 0,
       void 0,
-      false,
       defaultRoutes
     );
     pipeline.#manifestData = manifestData;

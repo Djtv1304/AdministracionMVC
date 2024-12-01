@@ -1,0 +1,1 @@
+import{j as e}from"./jsx-runtime.ojTTAiD7.js";import"./index.Dck49-wq.js";const a=({successMessage:s})=>e.jsx("div",{className:"text-sm p-2 rounded-md bg-green-100 text-green-500",role:"alert",children:e.jsx("div",{className:"space-y-2",children:s})});export{a as S};

@@ -1,13 +1,13 @@
-import './_astro_actions_jSSQh3Jl.mjs';
+import './_astro_actions_WSGs7rnP.mjs';
 import 'neotraverse/modern';
 import 'kleur/colors';
-import './astro/server_DDnACvc8.mjs';
+import './astro/server_DRZ047Jk.mjs';
 import 'clsx';
 import * as z from 'zod';
 import { z as z$1 } from 'zod';
 import { A as AstroError, h as ActionCalledFromServerError } from './astro/assets-service_DMZndIT3.mjs';
 import { i as isActionAPIContext } from './utils_Cwo9_uli.mjs';
-import { c as callSafely, b as ActionError, d as ActionInputError } from './shared_C5l7COKz.mjs';
+import { c as callSafely, b as ActionError, d as ActionInputError } from './shared__YcHOJHU.mjs';
 
 function defineAction({
   accept,
@@ -277,7 +277,7 @@ const loginUser = defineAction({
       }
       const token = await response.text();
       cookies.set("jwtToken", token, {
-        httpOnly: true,
+        httpOnly: false,
         secure: false,
         // Ajustado para pruebas en ambiente de desarrollo
         maxAge: 60 * 60 * 10,
@@ -323,10 +323,10 @@ const newVehicle = defineAction({
     }),
     year: z.number().int().min(1900, {
       message: "Year must be at least 1900"
-    }).max(2023, {
-      message: "Year must be at most 2023"
+    }).max(2030, {
+      message: "Year must be at most 2030"
     }),
-    batteryCapacity: z.number().int().min(1, {
+    batteryCapacity: z.number().min(1, {
       message: "Battery capacity must be at least 1"
     }),
     energyConsumption: z.number(),
@@ -343,7 +343,10 @@ const newVehicle = defineAction({
     maintenanceCost: z.number().min(1, {
       message: "Maintenance cost must be at least 1"
     }),
-    imageURL: z.string().url()
+    imageURL: z.string().url(),
+    precio: z.number().int().min(1, {
+      message: "Price must be at least 1"
+    })
   }),
   // Definir el manejador de la acción
   handler: async (newVehicle2, { cookies }) => {
@@ -360,9 +363,10 @@ const newVehicle = defineAction({
         consumoEnergetico: newVehicle2.energyConsumption,
         tiempoCarga: newVehicle2.chargeTime,
         costoMantenimiento: newVehicle2.maintenanceCost,
-        imageURL: newVehicle2.imageURL
+        imageURL: newVehicle2.imageURL,
+        promedioRendimiento: 0,
+        precio: newVehicle2.precio
       };
-      console.log("Payload: ", newVehiclePayload);
       const jwtToken = cookies.get("jwtToken");
       if (!jwtToken) {
         return {
@@ -374,12 +378,11 @@ const newVehicle = defineAction({
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${jwtToken}`
+          "Authorization": `Bearer ${jwtToken.value.trim()}`
         },
         body: JSON.stringify(newVehiclePayload)
       });
       if (!response.ok) {
-        console.log("ERROR: ", response);
         return {
           success: false,
           error: { fields: { general: "Error registering the vehicle" } }
@@ -396,6 +399,149 @@ const newVehicle = defineAction({
         };
       } else {
         console.error("Unknown error", error);
+        return {
+          success: false,
+          error: { fields: { general: "Unknown error" } }
+        };
+      }
+    }
+  }
+});
+
+const newCombustionVehicle = defineAction({
+  accept: "form",
+  input: z.object({
+    marca: z.string().min(3, {
+      message: "Brand must be at least 3 characters long"
+    }),
+    modelo: z.string().min(1, {
+      message: "Model must be at least 1 character long"
+    }),
+    anio: z.string().regex(/^\d{4}$/, {
+      message: "Year must be a 4-digit number"
+    }),
+    clasificacion: z.enum(["SUV", "Sedan", "Truck", "Coupe", "Convertible"]),
+    color: z.string().min(3, {
+      message: "Color must be at least 3 characters long"
+    }),
+    consumoCombustible: z.number().min(0, {
+      message: "Fuel consumption must be a positive number"
+    }),
+    emisionesCO2: z.number().min(0, {
+      message: "CO2 emissions must be a positive number"
+    }),
+    costoCombustible: z.number().min(0, {
+      message: "Fuel cost must be a positive number"
+    }),
+    capacidadTanque: z.number().min(0, {
+      message: "Tank capacity must be a positive number"
+    }),
+    imageURL: z.string().url({ message: "Image URL must be a valid URL" })
+  }),
+  handler: async (newVehicle, { cookies }) => {
+    try {
+      const jwtToken = cookies.get("jwtToken");
+      if (!jwtToken) {
+        return {
+          success: false,
+          error: { fields: { general: "Authentication token is missing" } }
+        };
+      }
+      const response = await fetch(
+        "http://localhost:8080/vehiculoCombustion/registrar",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${jwtToken.value.trim()}`
+          },
+          body: JSON.stringify(newVehicle)
+        }
+      );
+      if (!response.ok) {
+        const errorData = await response.text();
+        return {
+          success: false,
+          error: { fields: errorData || "An error occurred" }
+        };
+      }
+      const data = await response.text();
+      return { success: true, data };
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error);
+        return {
+          success: false,
+          error: { fields: { general: error.message } }
+        };
+      } else {
+        console.error("Unknown error", error);
+        return {
+          success: false,
+          error: { fields: { general: "Unknown error" } }
+        };
+      }
+    }
+  }
+});
+
+const userRoutine = defineAction({
+  accept: "form",
+  input: z.object({
+    fechaRutina: z.string().date().refine((date) => {
+      const parsedDate = new Date(date);
+      return !isNaN(parsedDate.getTime());
+    }).transform((date) => {
+      return new Date(date).toISOString().split("T")[0];
+    }),
+    diaSemana: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]),
+    actividad: z.string().min(3, {
+      message: "Activity must be at least 3 characters long"
+    }),
+    kilometrajeRecorrido: z.string().regex(/^\d+(\.\d+)?$/, {
+      message: "Kilometraje must be a valid number"
+    })
+  }),
+  handler: async (routineData, { cookies }) => {
+    try {
+      const token = cookies.get("jwtToken");
+      if (!token) {
+        return {
+          success: false,
+          error: { fields: { general: "You must be logged in" } }
+        };
+      }
+      const response = await fetch("http://localhost:8080/rutinaUsuario/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token?.value.trim()}`
+        },
+        body: JSON.stringify(routineData)
+      });
+      if (!response.ok) {
+        const errorMessage = await response.text();
+        return {
+          success: false,
+          error: { fields: { general: errorMessage } }
+        };
+      }
+      const data = await response.text();
+      console.log(data);
+      return { success: true, data };
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error(error);
+        return {
+          success: false,
+          error: { fields: { general: error.message } }
+        };
+      } else {
+        console.error("Unknown error", error);
+        return {
+          success: false,
+          error: { fields: { general: "Unknown error" } }
+        };
       }
     }
   }
@@ -404,7 +550,9 @@ const newVehicle = defineAction({
 const server = {
   newUser,
   loginUser,
-  newVehicle
+  newVehicle,
+  newCombustionVehicle,
+  userRoutine
 };
 
 export { server };

@@ -1,5 +1,5 @@
 import { A as AstroError, F as NoImageMetadata, H as FailedToFetchRemoteImageDimensions, J as ExpectedImageOptions, K as ExpectedImage, Q as ExpectedNotESMImage, T as resolveSrc, U as isRemoteImage, V as isRemotePath, W as isESMImportedImage, X as isLocalService, Y as DEFAULT_HASH_PROPS, Z as InvalidImageService, _ as ImageMissingAlt, $ as isRemoteAllowed } from '../chunks/astro/assets-service_DMZndIT3.mjs';
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, s as spreadAttributes, b as createAstro } from '../chunks/astro/server_DDnACvc8.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, d as addAttribute, s as spreadAttributes, b as createAstro } from '../chunks/astro/server_DRZ047Jk.mjs';
 import 'clsx';
 import * as mime from 'mrmime';
 export { renderers } from '../renderers.mjs';
@@ -356,7 +356,7 @@ const JPG = {
     while (input.length) {
       const i = readUInt16BE(input, 0);
       if (input[i] !== 255) {
-        input = input.slice(1);
+        input = input.slice(i);
         continue;
       }
       if (isEXIF(input)) {

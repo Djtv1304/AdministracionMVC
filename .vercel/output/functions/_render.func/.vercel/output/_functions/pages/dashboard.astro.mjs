@@ -1,7 +1,7 @@
-/* empty css                                      */
-import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_DDnACvc8.mjs';
+/* empty css                                 */
+import { c as createComponent, r as renderTemplate, a as renderComponent, m as maybeRenderHead } from '../chunks/astro/server_DRZ047Jk.mjs';
 import 'kleur/colors';
-import { $ as $$ProtectedLayout } from '../chunks/ProtectedLayout_Brw1XkI_.mjs';
+import { $ as $$ProtectedLayout } from '../chunks/ProtectedLayout_C6kmevB6.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Dashboard = createComponent(($$result, $$props, $$slots) => {

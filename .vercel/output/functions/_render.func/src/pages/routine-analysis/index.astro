@@ -1,0 +1,13 @@
+---
+import ProtectedLayout from '../../layouts/ProtectedLayout.astro';
+import UserRoutineAnalysis from '../../components/AnalisisRutina/UserRoutineAnalysis';
+---
+
+<ProtectedLayout title="User Routine Analysis - EV Manager">
+  <div class="max-w-4xl mx-auto py-8">
+    <div class="bg-white shadow-sm rounded-lg p-6">
+      <h1 class="text-2xl font-semibold text-gray-900 mb-6">User Routine Analysis</h1>
+      <UserRoutineAnalysis client:load />
+    </div>
+  </div>
+</ProtectedLayout>

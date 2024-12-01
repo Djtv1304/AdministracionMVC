@@ -1,0 +1,1 @@
+import{j as r}from"./jsx-runtime.ojTTAiD7.js";import"./index.Dck49-wq.js";const t=({errorMessage:e})=>r.jsx("div",{className:"bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3",role:"alert",children:r.jsx("span",{className:"block sm:inline",children:e})});export{t as E};

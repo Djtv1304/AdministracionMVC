@@ -5,7 +5,7 @@ import { escape } from 'html-escaper';
 import { decodeBase64, encodeHexUpperCase, encodeBase64, decodeHex } from '@oslojs/encoding';
 import 'cssesc';
 
-const ASTRO_VERSION = "4.16.13";
+const ASTRO_VERSION = "4.16.16";
 const REROUTE_DIRECTIVE_HEADER = "X-Astro-Reroute";
 const REWRITE_DIRECTIVE_HEADER_KEY = "X-Astro-Rewrite";
 const REWRITE_DIRECTIVE_HEADER_VALUE = "yes";
@@ -1379,8 +1379,8 @@ let response = await fetch('${serverIslandUrl}', {
 	method: 'POST',
 	body: JSON.stringify(data),
 });
-
-if(response.status === 200 && response.headers.get('content-type') === 'text/html') {
+if (script) {
+	if(response.status === 200 && response.headers.get('content-type') === 'text/html') {
 	let html = await response.text();
 
 	// Swap!
@@ -1395,6 +1395,7 @@ if(response.status === 200 && response.headers.get('content-type') === 'text/htm
 	script.before(frag);
 }
 script.remove();
+}
 </script>`);
     }
   };
@@ -2052,4 +2053,4 @@ function spreadAttributes(values = {}, _name, { class: scopedClassName } = {}) {
   return markHTMLString(output);
 }
 
-export { ASTRO_VERSION as A, REWRITE_DIRECTIVE_HEADER_VALUE as B, renderEndpoint as C, DEFAULT_404_COMPONENT as D, Fragment as F, NOOP_MIDDLEWARE_HEADER as N, REDIRECT_STATUS_CODES as R, renderComponent as a, createAstro as b, createComponent as c, addAttribute as d, renderHead as e, renderSlot as f, decodeKey as g, ROUTE_TYPE_HEADER as h, decryptString as i, createSlotValueFromString as j, clientLocalsSymbol as k, clientAddressSymbol as l, maybeRenderHead as m, REROUTABLE_STATUS_CODES as n, REROUTE_DIRECTIVE_HEADER as o, responseSentSymbol as p, renderSlotToString as q, renderTemplate as r, spreadAttributes as s, renderJSX as t, unescapeHTML as u, chunkToString as v, isRenderInstruction as w, originPathnameSymbol as x, renderPage as y, REWRITE_DIRECTIVE_HEADER_KEY as z };
+export { ASTRO_VERSION as A, REWRITE_DIRECTIVE_HEADER_VALUE as B, renderEndpoint as C, DEFAULT_404_COMPONENT as D, Fragment as F, NOOP_MIDDLEWARE_HEADER as N, REDIRECT_STATUS_CODES as R, renderComponent as a, createAstro as b, createComponent as c, addAttribute as d, renderHead as e, renderSlot as f, decodeKey as g, ROUTE_TYPE_HEADER as h, REROUTE_DIRECTIVE_HEADER as i, decryptString as j, createSlotValueFromString as k, clientLocalsSymbol as l, maybeRenderHead as m, clientAddressSymbol as n, REROUTABLE_STATUS_CODES as o, responseSentSymbol as p, renderSlotToString as q, renderTemplate as r, spreadAttributes as s, renderJSX as t, unescapeHTML as u, chunkToString as v, isRenderInstruction as w, originPathnameSymbol as x, renderPage as y, REWRITE_DIRECTIVE_HEADER_KEY as z };

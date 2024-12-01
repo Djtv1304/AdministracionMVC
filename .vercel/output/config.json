@@ -20,7 +20,7 @@
 			"dest": "_render"
 		},
 		{
-			"src": "^\\/battery\\/calculator\\/?$",
+			"src": "^\\/battery\\/?$",
 			"dest": "_render"
 		},
 		{
@@ -36,6 +36,10 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^\\/recommendations\\/registerRoutine\\/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^\\/recommendations\\/?$",
 			"dest": "_render"
 		},
@@ -44,7 +48,15 @@
 			"dest": "_render"
 		},
 		{
+			"src": "^\\/routine-analysis\\/?$",
+			"dest": "_render"
+		},
+		{
 			"src": "^\\/vehicles\\/register\\/?$",
+			"dest": "_render"
+		},
+		{
+			"src": "^\\/vehicles\\/registerCombustion\\/?$",
 			"dest": "_render"
 		},
 		{

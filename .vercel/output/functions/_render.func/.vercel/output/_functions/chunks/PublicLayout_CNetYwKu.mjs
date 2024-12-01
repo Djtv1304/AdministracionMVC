@@ -1,6 +1,6 @@
-import { c as createComponent, r as renderTemplate, m as maybeRenderHead, e as renderHead, a as renderComponent, f as renderSlot, b as createAstro } from './astro/server_DDnACvc8.mjs';
+import { c as createComponent, r as renderTemplate, m as maybeRenderHead, e as renderHead, a as renderComponent, f as renderSlot, b as createAstro } from './astro/server_DRZ047Jk.mjs';
 import 'kleur/colors';
-import { $ as $$Header } from './Header_BrdoSFgp.mjs';
+import { $ as $$Header } from './Header_DVKL3uCb.mjs';
 import 'clsx';
 
 const $$Footer = createComponent(($$result, $$props, $$slots) => {
