@@ -19,10 +19,10 @@ export const newVehicle = defineAction({
       .min(1900, {
         message: "Year must be at least 1900",
       })
-      .max(2023, {
-        message: "Year must be at most 2023",
+      .max(2030, {
+        message: "Year must be at most 2030",
       }),
-    batteryCapacity: z.number().int().min(1, {
+    batteryCapacity: z.number().min(1, {
       message: "Battery capacity must be at least 1",
     }),
     energyConsumption: z.number(),
@@ -40,6 +40,9 @@ export const newVehicle = defineAction({
       message: "Maintenance cost must be at least 1",
     }),
     imageURL: z.string().url(),
+    precio: z.number().int().min(1, {
+      message: "Price must be at least 1",
+    }),
   }),
   // Definir el manejador de la acción
   handler: async (newVehicle, { cookies }) => {
@@ -58,6 +61,8 @@ export const newVehicle = defineAction({
         tiempoCarga: newVehicle.chargeTime,
         costoMantenimiento: newVehicle.maintenanceCost,
         imageURL: newVehicle.imageURL,
+        promedioRendimiento: 0,
+        precio: newVehicle.precio,
       };
 
       // Obtener el token de autenticación del usuario

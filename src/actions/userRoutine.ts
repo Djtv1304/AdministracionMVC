@@ -4,6 +4,12 @@ import { z } from "astro:content";
 export const userRoutine = defineAction({
   accept: "form",
   input: z.object({
+    fechaRutina: z.string().date().refine((date) => {
+      const parsedDate = new Date(date);
+      return !isNaN(parsedDate.getTime()); // Verifica que la fecha sea válida
+    }).transform((date) => {
+      return new Date(date).toISOString().split("T")[0]; // Transforma la fecha al formato deseado
+    }),
     diaSemana: z.enum(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]),
     actividad: z.string().min(3, {
       message: "Activity must be at least 3 characters long",
@@ -35,9 +41,10 @@ export const userRoutine = defineAction({
 
       // Si la petición no fue exitosa, se retorna un objeto con el error
       if (!response.ok) {
+        const errorMessage = await response.text();
         return {
           success: false,
-          error: { fields: { general: "Failed to register routine" } },
+          error: { fields: { general: errorMessage } },
         };
       }
 

@@ -22,6 +22,7 @@ const RegisterVehicleForm: React.FC = () => {
     chargeTime: "",
     maintenanceCost: 0,
     imageURL: "",
+    precio: 0,
   });
 
   // Funcion para manejar el cambio de los inputs dinamicamente
@@ -73,6 +74,7 @@ const RegisterVehicleForm: React.FC = () => {
       chargeTime: "",
       maintenanceCost: 0,
       imageURL: "",
+      precio: 0,
     });
 
     setSuccessMessage(result.data?.data ?? null);
@@ -101,9 +103,8 @@ const RegisterVehicleForm: React.FC = () => {
             onChange={handleChange}
           >
             <option value={`Tesla`}>Tesla</option>
-            <option value={`Chevrolet`}>Chevrolet</option>
             <option value={`Ford`}>Ford</option>
-            <option value={`Nissan`}>Nissan</option>
+            <option value={`Mercedes Benz`}>Mercedes Benz</option>
             <option value={`BMW`}>BMW</option>
           </select>
           {errors.make && <ErrorMessageForm errorMessage={errors.make} />}
@@ -147,7 +148,7 @@ const RegisterVehicleForm: React.FC = () => {
             name="year"
             id="year"
             min="2000"
-            max="2024"
+            max="2030"
             value={formData.year}
             onChange={handleChange}
             className="mt-1 p-2 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
@@ -312,6 +313,24 @@ const RegisterVehicleForm: React.FC = () => {
           className="mt-1 p-2 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
         />
         {errors.imageURL && <ErrorMessageForm errorMessage={errors.imageURL} />}
+      </div>
+
+      <div>
+        <label
+          htmlFor="precio"
+          className="block text-sm font-medium text-gray-700"
+        >
+          Price ($)
+        </label>
+        <input
+          type="number"
+          name="precio"
+          id="precio"
+          value={formData.precio}
+          onChange={handleChange}
+          className="mt-1 p-2 block w-full shadow-lg sm:text-sm border-gray-300 rounded-md"
+        />
+        {errors.precio && <ErrorMessageForm errorMessage={errors.precio} />}
       </div>
 
       {errors.general && <ErrorMessageForm errorMessage={errors.general} />}
