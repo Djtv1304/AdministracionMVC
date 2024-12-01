@@ -31,6 +31,7 @@ function incrementId(rendererContextResult) {
 }
 
 /**
+ * 
  * Astro passes `children` as a string of HTML, so we need
  * a wrapper `div` to render that content as VNodes.
  *
