@@ -2,7 +2,7 @@ import { A as AstroError, q as ActionNotFoundError } from './astro/assets-servic
 
 async function getAction(path) {
   const pathKeys = path.replace(/^.*\/_actions\//, "").split(".").map((key) => decodeURIComponent(key));
-  let { server: actionLookup } = await import('./_astro_internal-actions_TXwEIREE.mjs');
+  let { server: actionLookup } = await import('./_astro_internal-actions_ChNQnyvG.mjs');
   if (actionLookup == null || !(typeof actionLookup === "object")) {
     throw new TypeError(
       `Expected \`server\` export in actions file to be an object. Received ${typeof actionLookup}.`

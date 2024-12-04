@@ -117,7 +117,6 @@ const VehicleRecommendation = () => {
         throw new Error("Error fetching recommendations");
       }
       const data = await recommendationResponse.json();
-      console.log("Recommendations: ", data);
       setBestRecommendedVehicle(data);
     } catch (error) {
       console.error("Error:", error);

@@ -1,4 +1,4 @@
-import './_astro_actions_Dmk27Yyj.mjs';
+import './_astro_actions_-geyxtwh.mjs';
 import 'neotraverse/modern';
 import '@astrojs/internal-helpers/path';
 import 'kleur/colors';
@@ -225,7 +225,6 @@ const newUser = defineAction({
         };
       }
       const data = await response.text();
-      console.log(data);
       return { success: true, data };
     } catch (error) {
       if (error instanceof Error) {
@@ -528,7 +527,6 @@ const userRoutine = defineAction({
         };
       }
       const data = await response.text();
-      console.log(data);
       return { success: true, data };
     } catch (error) {
       if (error instanceof Error) {
