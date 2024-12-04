@@ -27,8 +27,6 @@ const UserRoutineForm: React.FC = () => {
 
     const token = getCookie("jwtToken");
 
-    console.log("El token es ", token);
-
     try {
       const response = await fetch("https://coreweb-springboot-backend.onrender.com/rutinaUsuario/get", {
         method: "GET",

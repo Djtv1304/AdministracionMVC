@@ -81,7 +81,6 @@ const VehicleRecommendation: React.FC = () => {
       }
 
       const data = await recommendationResponse.json();
-      console.log("Recommendations: ", data);
       setBestRecommendedVehicle(data);
     } catch (error) {
       console.error("Error:", error);

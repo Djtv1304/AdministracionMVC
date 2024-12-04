@@ -33,8 +33,6 @@ const SignUpForm: React.FC = () => {
       data?: { data: string };
     };
 
-    console.log(result);
-
     if (result.error) {
       console.error(result.error);
 

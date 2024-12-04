@@ -67,7 +67,6 @@ export const newUser = defineAction({
       }
 
       const data = await response.text();
-      console.log(data);
 
       // Puedes manejar la respuesta aquí, por ejemplo, redirigir al usuario o mostrar un mensaje de éxito
       return { success: true, data };
