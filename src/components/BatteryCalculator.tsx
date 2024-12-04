@@ -31,7 +31,7 @@ const BatteryCalculator: React.FC = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:8080/registroRendimiento/save",
+        "https://coreweb-springboot-backend.onrender.com/registroRendimiento/save",
         {
           method: "POST",
           headers: {
@@ -56,7 +56,7 @@ const BatteryCalculator: React.FC = () => {
   const fetchPerformanceRecords = async () => {
     try {
       const response = await fetch(
-        `http://localhost:8080/registroRendimiento/todosRegistrosVehiculo/${selectedOption}`,
+        `https://coreweb-springboot-backend.onrender.com/registroRendimiento/todosRegistrosVehiculo/${selectedOption}`,
         {
           method: "GET",
           headers: {
@@ -94,7 +94,7 @@ const BatteryCalculator: React.FC = () => {
         }
 
         const response = await fetch(
-          "http://localhost:8080/vehiculo/obtenerVehiculosPorUsuario",
+          "https://coreweb-springboot-backend.onrender.com/vehiculo/obtenerVehiculosPorUsuario",
           {
             method: "GET",
             headers: {

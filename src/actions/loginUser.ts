@@ -20,7 +20,7 @@ export const loginUser = defineAction({
 
       // Realizar la petición POST a Spring Boot
       const response = await fetch(
-        "http://localhost:8080/usuario/login",
+        "https://coreweb-springboot-backend.onrender.com/usuario/login",
         {
           method: "POST",
           headers: {

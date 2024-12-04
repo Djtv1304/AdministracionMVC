@@ -86,7 +86,7 @@ const VehicleRecommendation = () => {
     };
     try {
       const saveResponse = await fetch(
-        "http://localhost:8080/preferenciaUsuario/save",
+        "https://coreweb-springboot-backend.onrender.com/preferenciaUsuario/save",
         {
           method: "POST",
           headers: {
@@ -101,7 +101,7 @@ const VehicleRecommendation = () => {
         throw new Error("Error saving data");
       }
       const recommendationResponse = await fetch(
-        "http://localhost:8080/preferenciaUsuario/recomendarVehiculo",
+        "https://coreweb-springboot-backend.onrender.com/preferenciaUsuario/recomendarVehiculo",
         {
           method: "GET",
           headers: {

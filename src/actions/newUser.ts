@@ -47,7 +47,7 @@ export const newUser = defineAction({
 
       // Realizar la petición POST a Spring Boot
       const response = await fetch(
-        "https://cae3-157-100-138-126.ngrok-free.app/usuario/registrar",
+        "https://coreweb-springboot-backend.onrender.com/usuario/registrar",
         {
           method: "POST",
           headers: {

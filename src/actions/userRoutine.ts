@@ -30,7 +30,7 @@ export const userRoutine = defineAction({
       }
 
       // Realizar la petición POST a Spring Boot
-      const response = await fetch("http://localhost:8080/rutinaUsuario/save", {
+      const response = await fetch("https://coreweb-springboot-backend.onrender.com/rutinaUsuario/save", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

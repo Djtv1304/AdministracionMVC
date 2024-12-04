@@ -75,7 +75,7 @@ export const newVehicle = defineAction({
       }
 
       // Realizar la petición POST a Spring Boot
-      const response = await fetch("http://localhost:8080/vehiculo/registrar", {
+      const response = await fetch("https://coreweb-springboot-backend.onrender.com/vehiculo/registrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

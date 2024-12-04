@@ -1,4 +1,4 @@
-import './_astro_actions_BaADGzdK.mjs';
+import './_astro_actions_Dmk27Yyj.mjs';
 import 'neotraverse/modern';
 import '@astrojs/internal-helpers/path';
 import 'kleur/colors';
@@ -208,7 +208,7 @@ const newUser = defineAction({
         // Formato YYYY-MM-DD
       };
       const response = await fetch(
-        "https://cae3-157-100-138-126.ngrok-free.app/usuario/registrar",
+        "https://coreweb-springboot-backend.onrender.com/usuario/registrar",
         {
           method: "POST",
           headers: {
@@ -260,7 +260,7 @@ const loginUser = defineAction({
         contrasenia: loginData.password
       };
       const response = await fetch(
-        "http://localhost:8080/usuario/login",
+        "https://coreweb-springboot-backend.onrender.com/usuario/login",
         {
           method: "POST",
           headers: {
@@ -375,7 +375,7 @@ const newVehicle = defineAction({
           error: { fields: { general: "Authentication token is missing" } }
         };
       }
-      const response = await fetch("http://localhost:8080/vehiculo/registrar", {
+      const response = await fetch("https://coreweb-springboot-backend.onrender.com/vehiculo/registrar", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -449,7 +449,7 @@ const newCombustionVehicle = defineAction({
         };
       }
       const response = await fetch(
-        "http://localhost:8080/vehiculoCombustion/registrar",
+        "https://coreweb-springboot-backend.onrender.com/vehiculoCombustion/registrar",
         {
           method: "POST",
           headers: {
@@ -512,7 +512,7 @@ const userRoutine = defineAction({
           error: { fields: { general: "You must be logged in" } }
         };
       }
-      const response = await fetch("http://localhost:8080/rutinaUsuario/save", {
+      const response = await fetch("https://coreweb-springboot-backend.onrender.com/rutinaUsuario/save", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

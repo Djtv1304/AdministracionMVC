@@ -3,7 +3,7 @@ import { c as createComponent, r as renderTemplate, d as renderComponent } from 
 import 'kleur/colors';
 import { $ as $$PublicLayout } from '../chunks/PublicLayout_D8BrMvXa.mjs';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { a as actions } from '../chunks/_astro_actions_BaADGzdK.mjs';
+import { a as actions } from '../chunks/_astro_actions_Dmk27Yyj.mjs';
 import { useState } from 'react';
 import { FiUserPlus } from 'react-icons/fi';
 export { renderers } from '../renderers.mjs';

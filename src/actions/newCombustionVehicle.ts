@@ -44,7 +44,7 @@ export const newCombustionVehicle = defineAction({
 
       // Realizar la petición POST a Spring Boot
       const response = await fetch(
-        "http://localhost:8080/vehiculoCombustion/registrar",
+        "https://coreweb-springboot-backend.onrender.com/vehiculoCombustion/registrar",
         {
           method: "POST",
           headers: {

@@ -8,7 +8,7 @@ import { o as originPathnameSymbol } from './chunks/astro/server_CSWU1b9h.mjs';
 import 'clsx';
 import 'html-escaper';
 import { h as hasContentType, A as ACTION_API_CONTEXT_SYMBOL, f as formContentTypes } from './chunks/utils_Cwo9_uli.mjs';
-import { getAction } from './chunks/get-action_BRrznowu.mjs';
+import { getAction } from './chunks/get-action_bvt1KMqA.mjs';
 
 const DELETED_EXPIRATION = /* @__PURE__ */ new Date(0);
 const DELETED_VALUE = "deleted";

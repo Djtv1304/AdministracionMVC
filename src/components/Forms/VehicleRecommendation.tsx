@@ -45,7 +45,7 @@ const VehicleRecommendation: React.FC = () => {
     try {
       // Realizar el POST al endpoint /save
       const saveResponse = await fetch(
-        "http://localhost:8080/preferenciaUsuario/save",
+        "https://coreweb-springboot-backend.onrender.com/preferenciaUsuario/save",
         {
           method: "POST",
           headers: {
@@ -63,7 +63,7 @@ const VehicleRecommendation: React.FC = () => {
 
       // Realizar el GET al endpoint /preferenciaUsuario/recomendarVehiculo
       const recommendationResponse = await fetch(
-        "http://localhost:8080/preferenciaUsuario/recomendarVehiculo",
+        "https://coreweb-springboot-backend.onrender.com/preferenciaUsuario/recomendarVehiculo",
         {
           method: "GET",
           headers: {

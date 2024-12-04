@@ -22,7 +22,7 @@ const UserRoutineAnalysis = () => {
       if (!token) {
         throw new Error("No token found in cookies");
       }
-      const response = await fetch("http://localhost:8080/rutinaUsuario/get", {
+      const response = await fetch("https://coreweb-springboot-backend.onrender.com/rutinaUsuario/get", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

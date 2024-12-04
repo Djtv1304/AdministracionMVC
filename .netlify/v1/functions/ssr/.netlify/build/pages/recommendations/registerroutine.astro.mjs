@@ -2,7 +2,7 @@
 import { c as createComponent, r as renderTemplate, d as renderComponent, m as maybeRenderHead } from '../../chunks/astro/server_CSWU1b9h.mjs';
 import 'kleur/colors';
 import { jsxs, jsx } from 'react/jsx-runtime';
-import { a as actions } from '../../chunks/_astro_actions_BaADGzdK.mjs';
+import { a as actions } from '../../chunks/_astro_actions_Dmk27Yyj.mjs';
 import { useState, useEffect } from 'react';
 import { E as ErrorMessageForm } from '../../chunks/ErrorMessageForm_ZrxVsV2Y.mjs';
 import { $ as $$ProtectedLayout } from '../../chunks/ProtectedLayout_DorM3o25.mjs';
@@ -29,7 +29,7 @@ const UserRoutineForm = () => {
     const token = getCookie("jwtToken");
     console.log("El token es ", token);
     try {
-      const response = await fetch("http://localhost:8080/rutinaUsuario/get", {
+      const response = await fetch("https://coreweb-springboot-backend.onrender.com/rutinaUsuario/get", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
